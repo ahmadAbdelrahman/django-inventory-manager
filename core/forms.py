@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import inlineformset_factory
+from django.forms.models import inlineformset_factory
 from .models import SalesOrder, SalesItem
 
 class SalesOrderForm(forms.ModelForm):
@@ -8,7 +8,8 @@ class SalesOrderForm(forms.ModelForm):
         fields = ['customer']
 
 SalesItemFormSet = inlineformset_factory(
-    SalesOrder, SalesItem,
+    SalesOrder, 
+    SalesItem,
     fields=('product', 'quantity'),
     extra=1,
     can_delete=True

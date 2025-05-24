@@ -1,0 +1,27 @@
+<h2>Sales Orders</h2>
+
+<table border="1" cellpadding="10">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Customer</th>
+      <th>Items</th>
+      <th>Total</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in orders %}
+    <tr>
+      <td>{{ order.id }}</td>
+      <td>{{ order.customer.name }}</td>
+      <td>{{ order.items.count }}</td>
+      <td>
+        ${{ order.items.all|map:'total_price'|sum }}
+        <!-- You may also use a custom method for total -->
+      </td>
+      <td><a href="{% url 'order_detail' order.id %}">View</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

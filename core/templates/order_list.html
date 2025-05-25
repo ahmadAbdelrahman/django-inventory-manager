@@ -1,6 +1,44 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
 <h2>Sales Orders</h2>
 
-<table border="1" cellpadding="10">
+<a href="{% url 'create_order' %}" class="btn btn-primary mb-3">New Order</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.customer.name }}</td>
+                <td>{{ order.date }}</td>
+                <td>${{ order.total_price }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4">No orders yet.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}
+
+
+
+
+<!-- <table border="1" cellpadding="10">
   <thead>
     <tr>
       <th>Order ID</th>
@@ -17,11 +55,11 @@
       <td>{{ order.customer.name }}</td>
       <td>{{ order.items.count }}</td>
       <td>
-        ${{ order.total_price }}
+        ${{ order.total_price }} -->
         <!-- You may also use a custom method for total -->
-      </td>
+      <!-- </td>
       <td><a href="{% url 'order_detail' order.id %}">View</a></td>
     </tr>
     {% endfor %}
   </tbody>
-</table>
+</table> -->

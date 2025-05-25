@@ -1,16 +1,16 @@
-<h2>Create Sales Order</h2>
-
-<form method="post">
+{% extends 'base.html' %}
+{% block content %}
+<h2>Create New Order</h2>
+<form method="post" class="mb-4">
     {% csrf_token %}
-    {{ order_form.as_p }}
-    <h3>Order Items</h3>
+    <div class="mb-3">{{ form.as_p }}</div>
+    <h4>Products</h4>
     {{ formset.management_form }}
-    <table>
-        {% for form in formset %}
-            <div style="margin-bottom:10px; border:1px solid #ccc; padding:10px;">
-      {{ form.as_p }}
-    </div>
-        {% endfor %} 
-    </table>
-    <button type="submit">Submit Order</button>
+    {% for form in formset %}
+        <div class="border rounded p-3 mb-2">
+            {{ form.as_p }}
+        </div>
+    {% endfor %}
+    <button class="btn btn-success" type="submit">Save</button>
 </form>
+{% endblock %}

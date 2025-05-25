@@ -64,7 +64,7 @@ def home(request):
         return render (request, 'home.html', {})
 
 
-def logout_uset(request):
+def logout_user(request):
     logout(request)
     messages.success(request, 'You Have Been Logged Out!')
     return redirect ('home')
@@ -82,7 +82,7 @@ def register_user(request):
             login(request, user)
             messages.success(request, "You Have Successfully Registered! Welcome!")
             return redirect('home')
-        else:
+    else:
             form = SignUpForm()
             return render(request, 'register.html', {'form':form})
 

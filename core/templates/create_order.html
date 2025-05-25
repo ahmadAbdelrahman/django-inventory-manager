@@ -7,12 +7,10 @@
     {{ formset.management_form }}
     <table>
         {% for form in formset %}
-            <tr>
-                <td>{{ form.product }}</td>
-                <td>{{ form.quantity }}</td>
-                <td>{{ form.DELETE }}</td>
-            </tr>
-        {% endfor %}
+            <div style="margin-bottom:10px; border:1px solid #ccc; padding:10px;">
+      {{ form.as_p }}
+    </div>
+        {% endfor %} 
     </table>
     <button type="submit">Submit Order</button>
 </form>

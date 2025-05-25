@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -34,11 +35,13 @@ class Customer(models.Model):
 
 class SalesOrder(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     @property
     def total_amount(self):
-        return sum(item.total_price for item in self.item.all())
+        print('items is : ' + self.items.all())
+        return sum (item.total_price for item in self.items.all())
     
     def __str__(self):
         return f"Order #{self.id} - {self.customer.name}"

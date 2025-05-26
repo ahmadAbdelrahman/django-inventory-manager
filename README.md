@@ -17,6 +17,7 @@ It includes user authentication, product and customer management, and order crea
 - SQLite (default)
 - Bootstrap 5
 
+## 📂 Folder Structure
 
 project-root/
 │
@@ -42,11 +43,13 @@ project-root/
     cd inventory-sales-system
     
 2. **Create a virtual environment**
+    ```bash
     python -m venv venv
     source venv/bin/activate  # On Windows: venv\Scripts\activate
     
 3. **Install dependencies**
-    pip install -r requirements.txt
+```bash
+pip install -r requirements.txt
 
 
 

@@ -40,7 +40,7 @@ project-root/
     ```bash
     git clone https://github.com/ahmadAbdelrahman/django-inventory-manager
     cd inventory-sales-system
-    ```
+    
 2. **Create a virtual environment**
     python -m venv venv
     source venv/bin/activate  # On Windows: venv\Scripts\activate

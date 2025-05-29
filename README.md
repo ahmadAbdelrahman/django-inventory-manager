@@ -22,8 +22,8 @@ A simple yet functional sales order management system built with Django.
 ## 📦 Setup & Run Locally
 
 ```bash
-git clone https://github.com/yourusername/django-sales-manager.git
-cd django-sales-manager
+git clone https://github.com/yourusername/django-inventory-manager.git
+cd InventoryManager 
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py createsuperuser

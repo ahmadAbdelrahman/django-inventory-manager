@@ -63,7 +63,7 @@ It includes user authentication, product and customer management, and order crea
 
 ## 📎 Demo
 
-- Deployed link here (https://django-inventory-manager-t2t0.onrender.com)
+- Deployed link here (https://django-inventory-manager-65ag.onrender.com)
 
 ## 📄 License
 

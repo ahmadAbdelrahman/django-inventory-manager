@@ -1,4 +1,4 @@
-<h2>Order #{{ order.id }} Details</h2>
+<!-- <h2>Order #{{ order.id }} Details</h2>
 <p><strong>Customer:</strong> {{ order.customer.name }}</p>
 
 <h3>Items</h3>
@@ -6,8 +6,45 @@
   {% for item in order.items.all %}
     <li>{{ item.product.name }} - {{ item.quantity }} x ${{ item.product.price }} = ${{ item.total_price }}</li>
   {% endfor %}
-</ul>
+</ul> -->
+
+
+<h2>Order Details</h2>
+
+<p><strong>Customer:</strong> {{ order.customer.name }}</p>
+<p><strong>Order Date:</strong> {{ order.date }}</p>
+
+<h4>Items</h4>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Unit Price</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in order.items.all %}
+    <tr>
+      <td>{{ item.product.name }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.product.price }}</td>
+      <td>{{ item.total_price }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h4 class="text-end">Total Order Value: {{ order.total }}</h4>
+
 
 <p><strong>Total:</strong> ${{ order.total_price }}</p>
+
+<a href="{% url 'invoice_pdf' order.id %}" class="btn btn-secondary">Download Invoice (PDF)</a>
+
+<br>
+<br>
+
 
 <a href="{% url 'order_list' %}">Back to Orders</a>

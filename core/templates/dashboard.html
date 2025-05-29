@@ -1,0 +1,16 @@
+<h2>📊 Sales Dashboard</h2>
+
+<ul>
+  <li><strong>Total Orders:</strong> {{ total_orders }}</li>
+  <li><strong>Total Revenue:</strong> ${{ total_revenue }}</li>
+  <li><strong>Total Customers:</strong> {{ total_customers }}</li>
+</ul>
+
+<h3>🔥 Best-Selling Products</h3>
+<ul>
+  {% for product in best_selling %}
+    <li>{{ product.product__name }} — {{ product.total_quantity }} units sold</li>
+  {% empty %}
+    <li>No sales yet.</li>
+  {% endfor %}
+</ul>

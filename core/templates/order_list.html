@@ -5,33 +5,72 @@
 
 <h2>Sales Orders</h2>
 
+<form method="get" class="d-flex mb-3">
+  <input type="text" name="q" class="form-control me-2" placeholder="Search by customer or product"
+    value="{{ request.GET.q }}">
+  <button type="submit" class="btn btn-outline-primary">Search</button>
+</form>
+
+
 <a href="{% url 'create_order' %}" class="btn btn-primary mb-3">New Order</a>
 
 <table class="table table-striped">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Customer</th>
-            <th>Date</th>
-            <th>Total</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for order in orders %}
-            <tr>
-                <td>{{ order.id }}</td>
-                <td>{{ order.customer.name }}</td>
-                <td>{{ order.date }}</td>
-                <td>${{ order.total_price }}</td>
-            </tr>
-        {% empty %}
-            <tr>
-                <td colspan="4">No orders yet.</td>
-            </tr>
-        {% endfor %}
-    </tbody>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Customer</th>
+      <th>Date</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in orders %}
+    <tr>
+      <td>{{ order.id }}</td>
+      <td>{{ order.customer.name }}</td>
+      <td>{{ order.created_At }}</td>
+      <td>${{ order.total_price }}</td>
+      <td>{{ order.user }}</td>
+
+      <td>
+        <a href="{% url 'order_detail' order.pk %}" class="btn btn-sm btn-outline-info">Details</a>
+      </td>
+
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4">No orders yet.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
 
+
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    {% if orders.has_previous %}
+    <li class="page-item">
+      <a class="page-link"
+        href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}page={{ orders.previous_page_number }}">Previous</a>
+    </li>
+    {% endif %}
+
+    {% for num in orders.paginator.page_range %}
+    {% if orders.number == num %}
+    <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+    {% elif num > orders.number|add:'-3' and num < orders.number|add:'3' %} <li class="page-item"><a class="page-link"
+        href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}page={{ num }}">{{ num }}</a></li>
+      {% endif %}
+      {% endfor %}
+
+      {% if orders.has_next %}
+      <li class="page-item">
+        <a class="page-link"
+          href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}page={{ orders.next_page_number }}">Next</a>
+      </li>
+      {% endif %}
+  </ul>
+</nav>
 
 {% endblock %}
 
@@ -56,8 +95,8 @@
       <td>{{ order.items.count }}</td>
       <td>
         ${{ order.total_price }} -->
-        <!-- You may also use a custom method for total -->
-      <!-- </td>
+<!-- You may also use a custom method for total -->
+<!-- </td>
       <td><a href="{% url 'order_detail' order.id %}">View</a></td>
     </tr>
     {% endfor %}

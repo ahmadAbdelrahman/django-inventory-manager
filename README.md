@@ -1,6 +1,7 @@
 # Django Inventory Manager
 
-A simple yet functional sales order management system built with Django.
+This is a simple, functional Django web application for managing sales orders.  
+It includes user authentication, product and customer management, and order creation with multiple products per order.
 
 ## 🚀 Features
 - User authentication
@@ -19,15 +20,45 @@ A simple yet functional sales order management system built with Django.
 - Bootstrap
 - HTML + CSS + JS (Django Templates)
 
-## 📦 Setup & Run Locally
+## ⚙️ Getting Started
 
+1. **Clone the repo**  
 ```bash
-git clone https://github.com/yourusername/django-inventory-manager.git
-cd InventoryManager 
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py createsuperuser
-python manage.py runserver
+    git clone https://github.com/yourusername/django-inventory-manager.git
+    cd InventoryManager
+```
+
+2. **Create a virtual environment**
+```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+3. **Install dependencies**
+```bash
+    pip install -r requirements.txt
+```
+
+4. **Run migrations**
+```bash
+    python manage.py makemigrations
+    python manage.py migrate
+```
+
+5. **Create superuser (admin account)**
+```bash
+    python manage.py createsuperuser
+```
+
+6. **Start the development server**
+```bash
+    python manage.py runserver
+```
+
+7. **Access the app**
+```bash
+    App: http://127.0.0.1:8000/
+    Admin: http://127.0.0.1:8000/admin/
 ```
 
 ## 📎 Demo
@@ -37,3 +68,7 @@ python manage.py runserver
 ## 📄 License
 
 MIT License — feel free to use and modify.
+
+## 👤 Author
+
+Ahmed Abdelrahman

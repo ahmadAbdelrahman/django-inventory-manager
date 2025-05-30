@@ -1,16 +1,77 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <h2>Create New Order</h2>
+
 <form method="post" class="mb-4">
     {% csrf_token %}
-    <div class="mb-3">{{ form.as_p }}</div>
+
+    <!-- Show order form (customer fields) -->
+    <div class="mb-3" id="order-form">
+        {{ order_form.as_p }}
+    </div>
+
     <h4>Products</h4>
     {{ formset.management_form }}
-    {% for form in formset %}
-        <div class="border rounded p-3 mb-2">
+
+    <div id="formset-container">
+
+
+        {% for form in formset %}
+        <div class="form-row border rounded p-3 mb-2 item-form">
             {{ form.as_p }}
         </div>
-    {% endfor %}
-    <button class="btn btn-success" type="submit">Save</button>
+        {% endfor %}
+    </div>
+
+    <button type="button" class="btn btn-primary" id="add-form-btn">+ Add Product</button>
+    <button type="submit" class="btn btn-success">Save</button>
 </form>
+
+{% endblock%}
+
+
+
+{% block extra_js %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const addButton = document.getElementById('add-form-btn');
+        const formContainer = document.getElementById('formset-container');
+        const totalForms = document.getElementById('id_items-TOTAL_FORMS');
+
+
+        console.log('addButton:', addButton);
+        console.log('formContainer:', formContainer);
+        console.log('totalForms:', totalForms);
+
+
+        if (!addButton || !formContainer || !totalForms) {
+            console.error("Add button or formset container not found.");
+            return;
+        }
+
+        addButton.addEventListener('click', function () {
+            const currentFormCount = parseInt(totalForms.value);
+            const firstForm = formContainer.querySelector('.item-form');
+            const newForm = firstForm.cloneNode(true);
+
+            newForm.querySelectorAll('input, select, textarea, label').forEach((el) => {
+                if (el.name) {
+                    el.name = el.name.replace(/form-(\d+)-/, `form-${currentFormCount}-`);
+                }
+                if (el.id) {
+                    el.id = el.id.replace(/form-(\d+)-/, `form-${currentFormCount}-`);
+                }
+                if (el.tagName === 'INPUT' || el.tagName === 'SELECT' || el.tagName === 'TEXTAREA') {
+                    el.value = '';
+                }
+            });
+
+            formContainer.appendChild(newForm);
+            totalForms.value = currentFormCount + 1;
+        });
+    });
+</script>
+
 {% endblock %}

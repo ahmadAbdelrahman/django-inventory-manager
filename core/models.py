@@ -39,10 +39,10 @@ class SalesOrder(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    @property
+    # @property
     def total_amount(self):
-        print('items is : ' + self.items.all())
-        return Sum (item.total_price for item in self.items.all())
+        # print('items is : ' + self.items.all())
+        return sum (item.total_price for item in self.items.all())
     
     def __str__(self):
         return f"Order #{self.id} - {self.customer.name}"
@@ -54,6 +54,7 @@ class SalesItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
 
+    @property
     def total_price(self):
         return self.product.price * self.quantity
 

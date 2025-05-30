@@ -43,7 +43,7 @@ class SalesOrderListView(ListView):
     model = SalesOrder
     template_name = 'order_list.html'
     context_object_name = 'orders'
-    paginate_by = 10
+    # paginate_by = 10
 
     def get_queryset(self):
         qs = super().get_queryset().prefetch_related('items__product', 'customer')
@@ -71,12 +71,15 @@ def create_sales_order(request):
         formset = SalesItemFormSet(request.POST)
 
         if order_form.is_valid() and formset.is_valid():
-            order = order_form.save()
+            order = order_form.save(commit=False)
             order.user = request.user
-            items = formset.save(commit=False)
-            for item in items:
-                item.order = order  # link item to the saved order
-                item.save()
+            order.save()
+            formset.instance = order
+            formset.save()
+            # items = formset.save(commit=False)
+            # for item in items:
+            #     item.order = order  # link item to the saved order
+            #     item.save()
             return redirect('order_success')  # redirect to a success page or order detail
     else:
         order_form = SalesOrderForm()

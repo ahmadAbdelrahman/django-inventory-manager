@@ -1,3 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <h2>Order submitted successfully</h2>
 
-<a href="{% url 'create_order' %}">Create Another Sale</a>
+<br>
+<br>
+
+<a class="btn btn-primary" href="{% url 'create_order' %}">Create Order</a>
+<br>
+<br>
+
+<a class="btn btn-primary" href="{% url 'home' %}">Home</a>
+
+
+
+{% endblock %}

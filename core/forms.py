@@ -13,7 +13,7 @@ SalesItemFormSet = inlineformset_factory(
     SalesOrder, 
     SalesItem,
     fields=('product', 'quantity'),
-    extra=3,
+    extra=1,
     can_delete=True
 )
 

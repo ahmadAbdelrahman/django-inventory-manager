@@ -12,7 +12,7 @@
 <h2>Order Details</h2>
 
 <p><strong>Customer:</strong> {{ order.customer.name }}</p>
-<p><strong>Order Date:</strong> {{ order.date }}</p>
+<p><strong>Order Date:</strong> {{ order.created_at }}</p>
 
 <h4>Items</h4>
 <table class="table table-bordered">
@@ -36,10 +36,10 @@
   </tbody>
 </table>
 
-<h4 class="text-end">Total Order Value: {{ order.total }}</h4>
+<h4 class="text-end">Total Order Value: {{ order.total_amount }}</h4>
 
 
-<p><strong>Total:</strong> ${{ order.total_price }}</p>
+<p><strong>Total:</strong> ${{ order.total_amount }}</p>
 
 <a href="{% url 'invoice_pdf' order.id %}" class="btn btn-secondary">Download Invoice (PDF)</a>
 

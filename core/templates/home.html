@@ -5,6 +5,16 @@
 {% if user.is_authenticated %}
 
 <h1>Welcome to the main page</h1>
+<br>
+<br>
+
+<a class="btn btn-primary" href="{% url 'create_order' %}">Create Order</a>
+<br>
+<br>
+<a class="btn btn-primary" href="{% url 'order_list' %}">Check All Orders</a>
+<br>
+<br>
+<a class="btn btn-primary" href="{% url 'order_list' %}">Check All Orders</a>
 
 {% else %}
 

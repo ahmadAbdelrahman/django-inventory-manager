@@ -3,7 +3,7 @@
 This is a simple, functional Django web application for managing sales orders.  
 It includes user authentication, product and customer management, and order creation with multiple products per order.
 
-## 🚀 Features
+## Features
 - User authentication
 - Customer & product management
 - Create and manage sales orders
@@ -14,13 +14,13 @@ It includes user authentication, product and customer management, and order crea
 - PDF order generation
 - Admin panel
 
-## 🧰 Tech Stack
+## Tech Stack
 - Django
 - SQLite
 - Bootstrap
 - HTML + CSS + JS (Django Templates)
 
-## ⚙️ Getting Started
+## Getting Started
 
 1. **Clone the repo**  
 ```bash
@@ -61,14 +61,14 @@ It includes user authentication, product and customer management, and order crea
     Admin: http://127.0.0.1:8000/admin/
 ```
 
-## 📎 Demo
+## Demo
 
 - Deployed link here (https://django-inventory-manager-65ag.onrender.com)
 
-## 📄 License
+## License
 
 MIT License — feel free to use and modify.
 
-## 👤 Author
+## Author
 
 Ahmed Abdelrahman
